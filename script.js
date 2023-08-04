@@ -14,7 +14,7 @@ class Enemy {
     this.image.src = "img/enemy1.png";
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.speed = Math.random() * 4 - 2;
+    // this.speed = Math.random() * 4 - 2;
     this.spriteWidth = 293;
     this.spriteHeight = 155;
     this.width = this.spriteWidth / 2.5;
@@ -23,10 +23,11 @@ class Enemy {
     this.flapSpeed = Math.floor(Math.random() * 3 + 1);
   }
   update() {
-    this.x += this.speed;
-    this.y += this.speed;
+    // Wiggle movement
+    this.x += Math.random() * 5 - 2.5;
+    this.y += Math.random() * 5 - 2.5;
+    
     // Animate sprites
-
     // Check if gameFrame is even (divisible by 2)
     // This is a quick way to slow down animation without using deltaTime
     if (gameFrame % this.flapSpeed === 0) {
