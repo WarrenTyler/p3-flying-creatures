@@ -6,6 +6,10 @@ const ctx = canvas.getContext("2d");
 
 const CANVAS_WIDTH = (canvas.width = 500);
 const CANVAS_HEIGHT = (canvas.height = 1000);
+
+canvas.style.width = CANVAS_WIDTH + "px";
+canvas.style.height = CANVAS_HEIGHT + "px";
+
 const NUMBER_OF_ENEMIES = 100;
 
 let gameFrame = 0;
