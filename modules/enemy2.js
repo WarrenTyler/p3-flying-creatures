@@ -11,15 +11,20 @@ export class Enemy2 {
     this.y = Math.random() * (canvas.height - this.height);
     this.frame = 0;
     this.flapSpeed = Math.floor(Math.random() * 3 + 1);
+    this.angle = Math.random() * 2;
+    this.angleSpeed = Math.random() * 0.2;
+    this.amplitude = Math.random() * 7;
   }
   update(gameFrame) {
-    // Wiggle movement
+    // Endless horizontal movement
     this.x -= this.speed;
-    this.y += Math.random() * 5 - 2.5;
     // Wrap around screen
     if (this.x < -this.width) {
       this.x = canvas.width;
     }
+    // Vertical sine wave movement
+    this.y += this.amplitude * Math.sin(this.angle);
+    this.angle += this.angleSpeed;
 
     // Animate sprites
     // Check if gameFrame is even (divisible by 2)
