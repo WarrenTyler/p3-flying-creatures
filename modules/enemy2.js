@@ -2,6 +2,7 @@ export class Enemy2 {
   constructor() {
     this.image = new Image();
     this.image.src = "img/enemy2.png";
+    this.speed = Math.random() * 4 + 1;
     this.spriteWidth = 266;
     this.spriteHeight = 188;
     this.width = this.spriteWidth / 2.5;
@@ -13,8 +14,12 @@ export class Enemy2 {
   }
   update(gameFrame) {
     // Wiggle movement
-    this.x += Math.random() * 5 - 2.5;
+    this.x -= this.speed;
     this.y += Math.random() * 5 - 2.5;
+    // Wrap around screen
+    if (this.x < -this.width) {
+      this.x = canvas.width;
+    }
 
     // Animate sprites
     // Check if gameFrame is even (divisible by 2)
