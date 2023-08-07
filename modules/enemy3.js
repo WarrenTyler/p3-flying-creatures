@@ -3,8 +3,8 @@ export class Enemy3 {
     this.image = new Image();
     this.image.src = "img/enemy3.png";
     this.speed = Math.random() * 4 + 1;
-    this.spriteWidth = 266;
-    this.spriteHeight = 188;
+    this.spriteWidth = 218;
+    this.spriteHeight = 177;
     this.width = this.spriteWidth / 2.5;
     this.height = this.spriteHeight / 2.5;
     this.x = Math.random() * (canvas.width - this.width);
