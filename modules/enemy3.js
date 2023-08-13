@@ -11,22 +11,32 @@ export class Enemy3 {
     this.y = Math.random() * (canvas.height - this.height);
     this.frame = 0;
     this.flapSpeed = Math.floor(Math.random() * 3 + 1);
-    this.angle = Math.random() * 2;
-    this.angleSpeed = Math.random() * 0.2;
-    this.amplitude = Math.random() * 7;
+    this.angle = 0;
+    this.angleSpeed = Math.random() * 2 + 0.5;
+    this.amplitude = Math.random() * 200 + 50;
   }
   update(gameFrame) {
-    // Endless horizontal movement
-    this.x -= this.speed;
-    // Wrap around screen
-    if (this.x < -this.width) {
-      this.x = canvas.width;
-    }
-    // Vertical sine wave movement
-    this.y += this.amplitude * Math.sin(this.angle);
+    // Circular movement pattern -------------------------------------
+    // Cycle horizontal movement using sine wave from center of canvas
+    this.x =
+      this.amplitude * Math.sin((this.angle * Math.PI) / 180) +
+      canvas.width / 2 -
+      this.width / 2;
+    // Cycle vertical movement using cosine wave from center of canvas
+    this.y =
+      this.amplitude * Math.cos((this.angle * Math.PI) / 180) +
+      canvas.height / 2 -
+      this.height / 2;
+    // // Wrap around screen
+    // if (this.x < -this.width) {
+    //   this.x = canvas.width;
+    // }
+    // // Vertical sine wave movement
+    // this.y += this.amplitude * Math.sin(this.angle);
+
     this.angle += this.angleSpeed;
 
-    // Animate sprites
+    // Animate sprites ----------------------------------------------
     // Check if gameFrame is even (divisible by 2)
     // This is a quick way to slow down animation without using deltaTime
     if (gameFrame % this.flapSpeed === 0) {
