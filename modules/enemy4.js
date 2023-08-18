@@ -9,25 +9,22 @@ export class Enemy4 {
     this.height = this.spriteHeight / 2.5;
     this.x = Math.random() * (canvas.width - this.width);
     this.y = Math.random() * (canvas.height - this.height);
+    this.newX = Math.random() * (canvas.width - this.width);
+    this.newY = Math.random() * (canvas.height - this.height);
     this.frame = 0;
     this.flapSpeed = Math.floor(Math.random() * 3 + 1);
-    this.angle = Math.random() * 500; // Where sprites start along path
-    this.angleSpeed = Math.random() * 0.5 + 0.5;
+    this.moveInterval = Math.floor(Math.random() * 200 + 50);
   }
   update(gameFrame) {
-    // Triple figure eight movement pattern -------------------------------------
-    // Cycle horizontal movement using sine wave from center of canvas
-    this.x =
-      (canvas.width / 2) * Math.sin((this.angle * Math.PI) / 90) +
-      canvas.width / 2 -
-      this.width / 2;
-    // Cycle vertical movement using cosine wave from center of canvas
-    this.y =
-      (canvas.height / 2) * Math.cos((this.angle * Math.PI) / 270) +
-      canvas.height / 2 -
-      this.height / 2;
-
-    this.angle += this.angleSpeed;
+    // Autonomous movement ------------------------------------------
+    if (gameFrame % this.moveInterval === 0) {
+      this.newX = Math.random() * (canvas.width - this.width);
+      this.newY = Math.random() * (canvas.height - this.height);
+    }
+    const dx = this.x - this.newX;
+    const dy = this.y - this.newY;
+    this.x -= dx / 70;
+    this.y -= dy / 70;
 
     // Animate sprites ----------------------------------------------
     // Check if gameFrame is even (divisible by 2)
