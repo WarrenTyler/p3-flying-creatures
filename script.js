@@ -1,4 +1,4 @@
-import { Enemy3 } from "./modules/enemy3.js";
+import { Enemy4 } from "./modules/enemy4.js";
 
 /** @type {HTMLCanvasElement} */
 const canvas = document.querySelector("canvas");
@@ -14,7 +14,7 @@ const NUMBER_OF_ENEMIES = 100;
 
 let gameFrame = 0;
 
-const enemies = Array.from({ length: NUMBER_OF_ENEMIES }, () => new Enemy3());
+const enemies = Array.from({ length: NUMBER_OF_ENEMIES }, () => new Enemy4());
 
 function animate() {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
